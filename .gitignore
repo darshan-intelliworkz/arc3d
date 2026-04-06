@@ -1,0 +1,23 @@
+/vendor
+/node_modules
+/public/build
+/public/hot
+/storage/*.key
+/storage/logs
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/bootstrap/cache/*
+.env
+.phpunit.result.cache
+.idea
+.vscode
+
+# Optional generated / backup files
+*.gz
+*.sql
+old_*
+oldsitemap.xml
+siteshmtl.xml
+sitemap.html
+urllist.txt

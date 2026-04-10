@@ -1966,7 +1966,7 @@ textarea {
     font-size: 48px;
     font-style: normal;
     font-weight: 400;
-    line-height: 44px;
+    /*line-height: 44px;*/
     background: #fff;
 }
 

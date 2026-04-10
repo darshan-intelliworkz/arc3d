@@ -432,4 +432,5 @@
     .slick-next{right:0;z-index: 9;}
     .slick-prev{left:0;z-index: 9;}
     .slick-next:before, .slick-prev:before{color:#005762;}
+    #header{padding:8px 0;}
 }

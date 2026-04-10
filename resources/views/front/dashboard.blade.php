@@ -190,7 +190,10 @@
             'Architectural Scale Models',
             'Trophies and Giveaways',
             'Props and Sculptures',
-            'Prototype and Low-Volume Parts'
+            'Prototype and Low-Volume Parts',
+            'Automotive scale models',
+            'Engineering and industrial models'
+           
         ];
     @endphp
     @foreach ($our_services as $our_service)
@@ -226,7 +229,8 @@
                         'Architectural Scale Models',
                         'Trophies and Giveaways',
                         'Props and Sculptures',
-                        'Prototype and Low-Volume Parts'
+                        'Prototype and Low-Volume Parts',
+                        
                     ];
                 @endphp
                 @foreach ($our_services as $our_service)

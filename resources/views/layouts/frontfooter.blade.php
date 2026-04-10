@@ -237,14 +237,14 @@
 
  <a href="{{ route('front.contact') }}#Inquiry_jump" class="btn_0 Inquiry_jump">Enquiry</a>
 
-<div class="float-buttons">
-        <div class="WhatsAppButton"> 
-            <a href="https://api.whatsapp.com/send?phone=971542797571&text=Hello,%20I%27m%20visiting%20your%20website%20and%20would%20like%20to%20know%20more" id="whatsapp" rel="nofollow" target="_blank"> 
-                <i class="fab fa-whatsapp"></i>
-                <span>WhatsApp<br><small>971542797571</small></span>
-             </a>
-        </div>
-    </div>
+<!--<div class="float-buttons">-->
+<!--        <div class="WhatsAppButton"> -->
+<!--            <a href="https://api.whatsapp.com/send?phone=971542797571&text=Hello,%20I%27m%20visiting%20your%20website%20and%20would%20like%20to%20know%20more" id="whatsapp" rel="nofollow" target="_blank"> -->
+<!--                <i class="fab fa-whatsapp"></i>-->
+<!--                <span>WhatsApp<br><small>971542797571</small></span>-->
+<!--             </a>-->
+<!--        </div>-->
+<!--    </div>-->
 
 
 <!-----------------------------------------whatsapp button start-------------------->
@@ -355,65 +355,80 @@
     width: 100%;
     height: 100%;
 }
+.is-invalid {
+    border: 1px solid red !important;
+}
+.error-message {
+    font-size: 13px;
+}
 
      
   </style>
   
-  <!--  <div class="modal fade Whats_mpp_modal" id="exampleModal-4" tabindex="-1">-->
-  <!--    <div class="modal-dialog modal-dialog-centered">-->
-  <!--        <div class="modal-content popup-box popup-box_whatsapp">-->
+    <div class="modal fade Whats_mpp_modal" id="exampleModal-4" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content popup-box popup-box_whatsapp">
 
-              <!-- HEADER -->
-  <!--            <div class="modal-header popup-header">-->
-  <!--                <h5>Chat with us on WhatsApp</h5>-->
-  <!--                <button type="button" class="btn-close white-close" data-bs-dismiss="modal"></button>-->
-  <!--            </div>-->
+               <!--HEADER -->
+              <div class="modal-header popup-header">
+                  <h5>Chat with us on WhatsApp</h5>
+                  <button type="button" class="btn-close white-close" data-bs-dismiss="modal"></button>
+              </div>
 
-              <!-- BODY -->
-  <!--            <div class="modal-body">-->
-  <!--                <form method="POST" action="{{ route('whatsaapinquiry') }}" id="whatsappForm">-->
-  <!--                    @csrf-->
+               <!--BODY -->
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('whatsaapinquiry') }}" id="whatsappForm">
+                      @csrf
 
-                      <!-- Message -->
-  <!--                    <div class="mb-3">-->
-  <!--                        <label class="form-label">Message</label>-->
-  <!--                        <textarea class="form-control popup-input" name="message" placeholder="Type your message"></textarea>-->
-  <!--                    </div>-->
+                       <!--Message -->
+                      <div class="mb-3">
+                          <label class="form-label">Message</label>
+                          <textarea class="form-control popup-input" id="wa_message" name="message" placeholder="Type your message"></textarea>
+                          <small class="text-danger error-message" id="wa_message_error"></small>
+                      </div>
 
-                      <!-- Phone -->
-  <!--                    <div class="mb-3">-->
-  <!--                        <label class="form-label">Contact No. <span class="text-danger">*</span></label>-->
+                       <!--Phone -->
+                      <div class="mb-3">
+                          <label class="form-label">Contact No. <span class="text-danger">*</span></label>
 
-  <!--                        <input type="tel" id="wa_phone" class="form-control popup-input" required-->
-  <!--                            oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,15);">-->
+                          <input type="tel" id="wa_phone" class="form-control popup-input" 
+                              oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,15);">
+                            <small class="text-danger error-message" id="wa_phone_error"></small>
+                           <!--hidden -->
+                          <input type="hidden" name="number" id="wa_full_phone">
+                          <input type="hidden" name="country" id="wa_country_name">
+                      </div>
 
-                          <!-- hidden -->
-  <!--                        <input type="hidden" name="number" id="wa_full_phone">-->
-  <!--                        <input type="hidden" name="country" id="wa_country_name">-->
-  <!--                    </div>-->
+                      <div class="d-grid">
+                          <button type="submit" id="submitbtn" class="btn popup-btn">
+                              Start Chat with Us
+                          </button>
+                      </div>
 
-  <!--                    <div class="d-grid">-->
-  <!--                        <button type="submit" class="btn popup-btn">-->
-  <!--                            Start Chat with Us-->
-  <!--                        </button>-->
-  <!--                    </div>-->
+                  </form>
+              </div>
 
-  <!--                </form>-->
-  <!--            </div>-->
+          </div>
+      </div>
+  </div>
 
-  <!--        </div>-->
-  <!--    </div>-->
-  <!--</div>-->
-
-  <!-- WhatsApp floating button -->
-  <!--<div class="WhatsAppButton_mpp">-->
-  <!--    <a data-bs-toggle="modal" data-bs-target="#exampleModal-4" target="_blank">-->
-  <!--        <img src="https://www.mmpfilter.com/public/images/whatsapp.png" alt="whatsapp">-->
-  <!--    </a>-->
-  <!--</div>-->
+   <!--WhatsApp floating button -->
+  <div class="WhatsAppButton_mpp">
+      <a data-bs-toggle="modal" data-bs-target="#exampleModal-4" target="_blank">
+          <img src="https://www.mmpfilter.com/public/images/whatsapp.png" alt="whatsapp">
+      </a>
+  </div>
     
-    
 
+@if(session('whatsapp_url'))
+    <script>
+       window.onload = function () {
+            window.open("{{ session('whatsapp_url') }}", "_blank");
+        };
+    </script>
+@endif
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> 
   <script>
       document.addEventListener("DOMContentLoaded", function() {
 
@@ -444,6 +459,70 @@
 
       });
   </script>
+
+<script>
+$(document).ready(function () {
+
+    $('#whatsappForm').on('submit', function (e) {
+        
+        let isValid = true;
+
+        // Clear old errors
+        $('.error-message').text('');
+        $('.popup-input').removeClass('is-invalid');
+
+        let phone = $('#wa_phone').val().trim();
+        let message = $('#wa_message').val().trim();
+
+        // Phone required
+        if (phone === '') {
+            $('#wa_phone_error').text('Contact number is required.');
+            $('#wa_phone').addClass('is-invalid');
+            isValid = false;
+        }
+        
+        // Phone required
+        if (message === '') {
+            $('#wa_message_error').text('Message is required.');
+            $('#wa_message').addClass('is-invalid');
+            isValid = false;
+        }
+
+        
+
+        // Stop submit if invalid
+        if (!isValid) {
+            e.preventDefault();
+            return false;
+        }
+        
+        if (isValid) {
+            $("#submitbtn")
+                .prop("disabled", true)
+                .text("Submitting...");
+        }
+
+        // Set hidden phone field before submit
+        $('#wa_full_phone').val(phone);
+    });
+
+    // Remove error while typing
+    $('#wa_phone').on('input', function () {
+        if ($(this).val().trim() !== '') {
+            $('#wa_phone_error').text('');
+            $(this).removeClass('is-invalid');
+        }
+    });
+
+    $('#wa_message').on('input', function () {
+        if ($(this).val().trim() !== '') {
+            $('#wa_message_error').text('');
+            $(this).removeClass('is-invalid');
+        }
+    });
+
+});
+</script>
 
 <!----------------------------------------------whatsapp button end------------------------>
 

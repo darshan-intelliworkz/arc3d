@@ -1,5 +1,8 @@
 @php
-    $firstHowItWork = $howitsworks->first();
+    $firstHowItWork = null;
+    if(isset($howitsworks)){
+        $firstHowItWork = $howitsworks->first();
+    }
 @endphp
 
 @include('layouts.frontheader', [
@@ -146,29 +149,31 @@
         @endif
         {!! $service->howitworks_short_desc !!}   
         @php
-            $countOfHowItWorks = $howitsworks->count(); // original collection/array count
-            $howItWorksClass = 'how_3'; // default
-
-            if ($countOfHowItWorks == 4) {
-                $howItWorksClass = 'how_4';
-            } elseif ($countOfHowItWorks == 5) {
-                $howItWorksClass = 'how_5';
-            }
+                $countOfHowItWorks = isset($howitsworks) ? $howitsworks->count() : 0; // original collection/array count
+                $howItWorksClass = 'how_3'; // default
+    
+                if ($countOfHowItWorks == 4) {
+                    $howItWorksClass = 'how_4';
+                } elseif ($countOfHowItWorks == 5) {
+                    $howItWorksClass = 'how_5';
+                }
         @endphp
   
         <div class="{{ $howItWorksClass }}">
-            @foreach ($howitsworks as $howitwork)
-                <div class="how_3_1">
-                    <div class="how_wrapper">
-                        <img src="{{ asset('public/admin/howitworks/' . $howitwork->image)}}" alt="{{ $howitwork->alt_tag }}" class="img-fluid br-10">
-                        <div class="how_ctnt">
-                            <h4 class="title_24 yellow_txt">{{ $howitwork->name }}:</h4>
-                            {!! preg_replace('/<p(.*?)>/', '<p$1 class="text-white mb-0">', $howitwork->description) !!}
-                            
+            @if(isset($howitsworks) && is_countable($howitsworks) && count($howitsworks) > 0)
+                @foreach ($howitsworks as $howitwork)
+                    <div class="how_3_1">
+                        <div class="how_wrapper">
+                            <img src="{{ asset('public/admin/howitworks/' . $howitwork->image)}}" alt="{{ $howitwork->alt_tag }}" class="img-fluid br-10">
+                            <div class="how_ctnt">
+                                <h4 class="title_24 yellow_txt">{{ $howitwork->name }}:</h4>
+                                {!! preg_replace('/<p(.*?)>/', '<p$1 class="text-white mb-0">', $howitwork->description) !!}
+                                
+                            </div>
                         </div>
-                    </div>
-                </div> 
-            @endforeach
+                    </div> 
+                @endforeach
+            @endif
         </div>
        @php
             $desc = trim(strip_tags($service->howitworks_desc));
@@ -254,6 +259,7 @@
        
         <div class="expect_wrapper">
             <div class="expect_slider">
+                @if(isset($exceeds_expectations) && is_countable($exceeds_expectations) && count($exceeds_expectations) > 0)
                 @foreach ($exceeds_expectations as $exceeds_expectation)
                     <div>
                         <div class="expect_slide">
@@ -263,7 +269,7 @@
                     </div>
                     
                 @endforeach
-                
+                @endif
             </div>
         </div>
     </div>

@@ -297,10 +297,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                         'trophies-and-giveaways',
                                         'props-and-sculptures',
                                         'prototype-and-low-volume-parts',
-                                        
-                                        
+                                        'engineering-and-industrial-models',
+                                        'automotive-scale-models',
                                     ];
-                                
                                     $services = Services::where('status', 'Active')
                                                 ->whereNotIn('url', $exclude_slugs)
                                                 ->orderBy('id', 'Desc')

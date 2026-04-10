@@ -357,7 +357,16 @@ class HomeController extends Controller
         $title = "Explore Our 3D Printing Projects | ARC 3D"; 
         $description = "Explore our 3D printing projects, such as Architectural Scale Models, Cartoons, Decorative, Defence, Oil Gas, Prototypes, Engines, and many more";
         $our_services = Services::where('status' , 'Active')->orderBy('index_id' , 'Asc')->get();
-        $projects = FeatureProject::where('status' , 'Active')->orderBy('id' , 'Desc')->get();
+        // $projects = FeatureProject::where('status' , 'Active')->orderBy('id' , 'Desc')->get();
+        $projects = FeatureProject::where('status', 'Active')
+            ->orderByRaw("
+                CASE 
+                    WHEN JSON_CONTAINS(services, '\"architectural-scale-models\"') THEN 0
+                    ELSE 1
+                END
+            ")
+            ->orderBy('id', 'DESC')
+            ->get();
         return view('front.projects',compact('title','description','our_services' , 'projects'));
     }
     public function architecture()
@@ -445,14 +454,20 @@ class HomeController extends Controller
     if($service->howitworks){
         $howitworkarray = json_decode($service->howitworks , true);
     }
-    $howitsworks = HowItWorks::where('status' , 'Active')->whereIn('id' ,$howitworkarray)->get();
+    $howitsworks = null;
+    if(isset($howitworkarray) && is_countable($howitworkarray) && count($howitworkarray) > 0){
+        $howitsworks = HowItWorks::where('status' , 'Active')->whereIn('id', $howitworkarray)->get();
+    }
 
     // 👉 Exceeds expectations
     $excedsarray = [];
     if($service->exceeds_expectations){
         $excedsarray = json_decode($service->exceeds_expectations , true);
     }
-    $exceeds_expectations = ExceedsExpectations::where('status' , 'Active')->whereIn('id' ,$excedsarray)->get();
+    $exceeds_expectations = null;
+    if(isset($excedsarray) && is_countable($excedsarray) && count($excedsarray) > 0){
+        $exceeds_expectations = ExceedsExpectations::where('status' , 'Active')->whereIn('id' ,$excedsarray)->get();
+    }
 
     // 👉 Feature projects
     $feature_projects = FeatureProject::where('status', 'Active')
@@ -652,7 +667,7 @@ class HomeController extends Controller
         $message = 'Inquiry from the website.';
         $whatsappUrl = "https://api.whatsapp.com/send/?phone={$number}&text=" . urlencode($message);
     
-        return redirect()->away($whatsappUrl);
+        return back()->with('whatsapp_url', $whatsappUrl);
     }
 
  

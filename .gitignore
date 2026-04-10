@@ -12,7 +12,7 @@
 .phpunit.result.cache
 .idea
 .vscode
-
+.htaccess
 # Optional generated / backup files
 *.gz
 *.sql

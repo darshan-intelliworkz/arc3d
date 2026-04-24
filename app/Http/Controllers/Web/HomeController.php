@@ -630,30 +630,29 @@ class HomeController extends Controller
             }
  
     }
-    
+
     public function whatsaapinquiry(Request $request)
     {
+        if (!empty($request->website_honey_point)) {
+            return back(); 
+        }
+    
         WhatsappInquiry::create([
-           
             'number'  => $request->number,
-            'message'  => $request->message,
+            'message' => $request->message,
         ]);
     
-        $timestamp = Carbon::now()->format('Y-m-d H:i:s');
-    
-        // Google Sheet expects:
-        // form_type, contact, message, date
+        $timestamp  = Carbon::now('Asia/Dubai')->format('Y-m-d H:i:s');
         $sheetsData = [
             'form_type' => 'whatsapp inquiry',
             'contact'   => $request->number,
-            'message'  => $request->message,
+            'message'   => $request->message,
             'date'      => $timestamp,
         ];
+    
         try {
             Http::withHeaders(['Content-Type' => 'application/json'])
-                ->post('https://script.google.com/macros/s/AKfycbztAqlbzzo4_VTupFcT6udaQtinGuXjwL1zNm018BvHnkzEfLDF7JEa5DDjB2qKvWM-/exec', 
-                    $sheetsData
-                );
+                ->post('https://script.google.com/macros/s/AKfycbztAqlbzzo4_VTupFcT6udaQtinGuXjwL1zNm018BvHnkzEfLDF7JEa5DDjB2qKvWM-/exec', $sheetsData);
         } catch (\Exception $e) {
             \Log::error('Google Sheets Exception (WhatsApp Inquiry):', [
                 'message'   => $e->getMessage(),
@@ -662,14 +661,51 @@ class HomeController extends Controller
             ]);
         }
     
-        
-        $number = '971542797571'; // Change if needed
-        $message = 'Inquiry from the website.';
-        $whatsappUrl = "https://api.whatsapp.com/send/?phone={$number}&text=" . urlencode($message);
-    
-        return back()->with('whatsapp_url', $whatsappUrl);
+        return response()->json(['success' => true]);
     }
-
+    
+    // public function whatsaapinquiry(Request $request)
+    // {
+    //     if (!empty($request->website_honey_point)) {
+    //         return back(); // silently ignore
+    //     }
+        
+    //     WhatsappInquiry::create([
+           
+    //         'number'  => $request->number,
+    //         'message'  => $request->message,
+    //     ]);
+    
+    //     $timestamp = Carbon::now('Asia/Dubai')->format('Y-m-d H:i:s');
+    
+    //     // Google Sheet expects:
+    //     // form_type, contact, message, date
+    //     $sheetsData = [
+    //         'form_type' => 'whatsapp inquiry',
+    //         'contact'   => $request->number,
+    //         'message'  => $request->message,
+    //         'date'      => $timestamp,
+    //     ];
+    //     try {
+    //         Http::withHeaders(['Content-Type' => 'application/json'])
+    //             ->post('https://script.google.com/macros/s/AKfycbztAqlbzzo4_VTupFcT6udaQtinGuXjwL1zNm018BvHnkzEfLDF7JEa5DDjB2qKvWM-/exec', 
+    //                 $sheetsData
+    //             );
+    //     } catch (\Exception $e) {
+    //         \Log::error('Google Sheets Exception (WhatsApp Inquiry):', [
+    //             'message'   => $e->getMessage(),
+    //             'trace'     => $e->getTraceAsString(),
+    //             'data_sent' => $sheetsData
+    //         ]);
+    //     }
+    
+        
+    //     $number = '971542797571'; // Change if needed
+    //     $message = 'Inquiry from the website.';
+    //     $whatsappUrl = "https://api.whatsapp.com/send/?phone={$number}&text=" . urlencode($message);
+    
+    //     return back()->with('whatsapp_url', $whatsappUrl);
+    // }
  
 }
  

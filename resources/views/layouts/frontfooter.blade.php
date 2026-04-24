@@ -250,273 +250,273 @@
 <!-----------------------------------------whatsapp button start-------------------->
 
 <style>
-      /* ===== MODAL DESIGN ===== */
-      .Whats_mpp_modal .popup-box_whatsapp {
-          border-radius: 16px;
-          /* overflow: hidden;   */
-      }
-
-      /* Header */
-      .Whats_mpp_modal .popup-header {
-          background: #005762;
-          color: #fff;
-          padding: 15px 20px;
-      }
-
-      .Whats_mpp_modal .popup-header h5 {
-          margin: 0;
-          font-weight: 600;
-      }
-
-      .Whats_mpp_modal .white-close {
-          filter: invert(1);
-      }
-
-      /* Body */
-      .Whats_mpp_modal .popup-box_whatsapp .modal-body {
-          padding: 25px;
-      }
-
-      /* Inputs */
-      .Whats_mpp_modal .popup-input {
-          border-radius: 12px;
-          height: 50px;
-          border: 1px solid #ddd;
-          box-shadow: none !important;
-      }
-
-      .Whats_mpp_modal .popup-input:focus {
-          border-color: #005762;
-      }
-
-      /* Textarea */
-      .Whats_mpp_modal textarea.popup-input {
-          height: 90px;
-      }
-
-      /* Button */
-      .Whats_mpp_modal .popup-btn {
-          background: #005762;
-          color: #fff;
-          height: 50px;
-          border-radius: 12px;
-          font-weight: 600;
-          border: none;
-      }
-
-      .Whats_mpp_modal .popup-btn:hover {
-          background: #005762;
-          color: #fff;
-      }
-
-      /* intl tel input full width */
-      .Whats_mpp_modal .iti {
-          width: 100%;
-      }
-
-      .Whats_mpp_modal .iti__selected-flag {
-          border-radius: 10px 0 0 10px;
-      }
-
-      /* Remove modal scroll */
-      .Whats_mpp_modal .modal-dialog {
-          max-width: 420px;
-      }
-
-      .Whats_mpp_modal .modal-content {
-          /* overflow: hidden; */
-      }
-.WhatsAppButton_mpp {
-    background: #14a614;
-    position: fixed;
-    bottom: 35px;
-    right: 0px;
-    z-index: 9999;
-    width: 45px;
-    height: 45px;
-    border-radius: 5px 0 0 5px;
-  cursor: pointer;
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(20, 166, 20, 0.7);
+    .Whats_mpp_modal .popup-box_whatsapp {
+        border-radius: 16px;
     }
-    70% {
-        box-shadow: 0 0 0 15px rgba(20, 166, 20, 0);
+    .Whats_mpp_modal .popup-header {
+        background: #005762;
+        color: #fff;
+        padding: 15px 20px;
     }
-    100% {
-        box-shadow: 0 0 0 0 rgba(20, 166, 20, 0);
+    .Whats_mpp_modal .popup-header h5 {
+        margin: 0;
+        font-weight: 600;
     }
-}
+    .Whats_mpp_modal .white-close {
+        filter: invert(1);
+    }
+    .Whats_mpp_modal .popup-box_whatsapp .modal-body {
+        padding: 25px;
+    }
+    .Whats_mpp_modal .popup-input {
+        border-radius: 12px;
+        height: 50px;
+        border: 1px solid #ddd;
+        box-shadow: none !important;
+    }
+    .Whats_mpp_modal .popup-input:focus {
+        border-color: #005762;
+    }
+    .Whats_mpp_modal textarea.popup-input {
+        height: 90px;
+    }
+    .Whats_mpp_modal .popup-btn {
+        background: #005762;
+        color: #fff;
+        height: 50px;
+        border-radius: 12px;
+        font-weight: 600;
+        border: none;
+    }
+    .Whats_mpp_modal .popup-btn:hover {
+        background: #005762;
+        color: #fff;
+    }
+    .Whats_mpp_modal .iti {
+        width: 100%;
+    }
+    .Whats_mpp_modal .iti__selected-flag {
+        border-radius: 10px 0 0 10px;
+    }
+    .Whats_mpp_modal .modal-dialog {
+        max-width: 420px;
+    }
+    .WhatsAppButton_mpp {
+        background: #14a614;
+        position: fixed;
+        bottom: 35px;
+        right: 0px;
+        z-index: 9999;
+        width: 45px;
+        height: 45px;
+        border-radius: 5px 0 0 5px;
+        cursor: pointer;
+        animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+        0%   { box-shadow: 0 0 0 0 rgba(20, 166, 20, 0.7); }
+        70%  { box-shadow: 0 0 0 15px rgba(20, 166, 20, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(20, 166, 20, 0); }
+    }
+    .WhatsAppButton_mpp img {
+        width: 100%;
+        height: 100%;
+    }
+    .is-invalid {
+        border: 1px solid red !important;
+    }
+    .error-message {
+        font-size: 13px;
+    }
+</style>
 
-.WhatsAppButton_mpp img {
-    width: 100%;
-    height: 100%;
-}
-.is-invalid {
-    border: 1px solid red !important;
-}
-.error-message {
-    font-size: 13px;
-}
+<!-- Modal -->
+<div class="modal fade Whats_mpp_modal" id="exampleModal-4" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content popup-box popup-box_whatsapp">
 
-     
-  </style>
-  
-    <div class="modal fade Whats_mpp_modal" id="exampleModal-4" tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content popup-box popup-box_whatsapp">
+            <!-- HEADER -->
+            <div class="modal-header popup-header">
+                <h5>Chat with us on WhatsApp</h5>
+                <button type="button" class="btn-close white-close" data-bs-dismiss="modal"></button>
+            </div>
 
-               <!--HEADER -->
-              <div class="modal-header popup-header">
-                  <h5>Chat with us on WhatsApp</h5>
-                  <button type="button" class="btn-close white-close" data-bs-dismiss="modal"></button>
-              </div>
+            <!-- BODY -->
+            <div class="modal-body">
+                <form method="POST" action="{{ route('whatsaapinquiry') }}" id="whatsappForm">
+                    @csrf
 
-               <!--BODY -->
-                <div class="modal-body">
-                    <form method="POST" action="{{ route('whatsaapinquiry') }}" id="whatsappForm">
-                      @csrf
+                    <!-- Message (optional) -->
+                    <div class="mb-3">
+                        <label class="form-label">Message</label>
+                        <textarea class="form-control popup-input" id="wa_message" name="message" placeholder="Type your message"></textarea>
+                    </div>
 
-                       <!--Message -->
-                      <div class="mb-3">
-                          <label class="form-label">Message</label>
-                          <textarea class="form-control popup-input" id="wa_message" name="message" placeholder="Type your message"></textarea>
-                          <small class="text-danger error-message" id="wa_message_error"></small>
-                      </div>
+                    <!-- Honeypot (hidden from users) -->
+                    <div style="display:none;">
+                        <input type="text" name="website_honey_point" id="wa_website_honey_point">
+                    </div>
 
-                       <!--Phone -->
-                      <div class="mb-3">
-                          <label class="form-label">Contact No. <span class="text-danger">*</span></label>
+                    <!-- Phone (required) -->
+                    <!--<div class="mb-3">-->
+                    <!--    <label class="form-label">Contact No. <span class="text-danger">*</span></label>-->
+                    <!--    <input type="tel" id="wa_phone" class="form-control popup-input"-->
+                    <!--        oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,15);">-->
+                    <!--    <small class="text-danger error-message" id="wa_phone_error"></small>-->
+                        <!-- Hidden fields -->
+                    <!--    <input type="hidden" name="number" id="wa_full_phone">-->
+                    <!--    <input type="hidden" name="country" id="wa_country_name">-->
+                    <!--</div>-->
+                    <!-- Phone (required) -->
+                    <div class="mb-3">
+                        <label class="form-label">Contact No. <span class="text-danger">*</span></label>
+                        <input type="tel" id="wa_phone" class="form-control popup-input"
+                            oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,15);">
+                        <small class="text-danger error-message" id="wa_phone_error"></small>
+                        <!-- Hidden fields -->
+                        <input type="hidden" name="number" id="wa_full_phone">
+                        <input type="hidden" name="country" id="wa_country_name">
+                    </div>
 
-                          <input type="tel" id="wa_phone" class="form-control popup-input" 
-                              oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,15);">
-                            <small class="text-danger error-message" id="wa_phone_error"></small>
-                           <!--hidden -->
-                          <input type="hidden" name="number" id="wa_full_phone">
-                          <input type="hidden" name="country" id="wa_country_name">
-                      </div>
+                    <div class="d-grid">
+                        <button type="submit" id="submitbtn" class="btn popup-btn">
+                            Start Chat with Us
+                        </button>
+                    </div>
 
-                      <div class="d-grid">
-                          <button type="submit" id="submitbtn" class="btn popup-btn">
-                              Start Chat with Us
-                          </button>
-                      </div>
+                </form>
+            </div>
 
-                  </form>
-              </div>
+        </div>
+    </div>
+</div>
 
-          </div>
-      </div>
-  </div>
+<!-- WhatsApp Floating Button -->
+<div class="WhatsAppButton_mpp">
+    <a data-bs-toggle="modal" data-bs-target="#exampleModal-4">
+        <img src="https://www.mmpfilter.com/public/images/whatsapp.png" alt="whatsapp">
+    </a>
+</div>
 
-   <!--WhatsApp floating button -->
-  <div class="WhatsAppButton_mpp">
-      <a data-bs-toggle="modal" data-bs-target="#exampleModal-4" target="_blank">
-          <img src="https://www.mmpfilter.com/public/images/whatsapp.png" alt="whatsapp">
-      </a>
-  </div>
-    
-
-@if(session('whatsapp_url'))
-    <script>
-       window.onload = function () {
-            window.open("{{ session('whatsapp_url') }}", "_blank");
-        };
-    </script>
-@endif
-
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> 
-  <script>
-      document.addEventListener("DOMContentLoaded", function() {
-
-          const input = document.querySelector("#wa_phone");
-          const fullPhone = document.querySelector("#wa_full_phone");
-          const countryName = document.querySelector("#wa_country_name");
-
-          const iti = window.intlTelInput(input, {
-              initialCountry: "auto",
-              separateDialCode: true,
-              preferredCountries: ["in", "ae", "us", "gb"],
-              geoIpLookup: function(callback) {
-                  fetch("https://ipapi.co/json/")
-                      .then(res => res.json())
-                      .then(data => callback(data.country_code))
-                      .catch(() => callback("in"));
-              },
-              utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.4/build/js/utils.js",
-          });
-
-          document.getElementById("whatsappForm").addEventListener("submit", function() {
-              const countryData = iti.getSelectedCountryData();
-              const number = input.value.replace(/\s+/g, "");
-
-              fullPhone.value = "+" + countryData.dialCode + number;
-              countryName.value = countryData.name;
-          });
-
-      });
-  </script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.4/build/js/intlTelInput.min.js"></script>
 
 <script>
-$(document).ready(function () {
+document.addEventListener("DOMContentLoaded", function () {
 
+    // ── intl-tel-input setup ──
+    const input    = document.querySelector("#wa_phone");
+    const fullPhone = document.querySelector("#wa_full_phone");
+    const countryName = document.querySelector("#wa_country_name");
+
+    const iti = window.intlTelInput(input, {
+        initialCountry: "auto",
+        separateDialCode: true,
+        preferredCountries: ["in", "ae", "us", "gb"],
+        geoIpLookup: function (callback) {
+            fetch("https://ipapi.co/json/")
+                .then(res => res.json())
+                .then(data => callback(data.country_code))
+                .catch(() => callback("in"));
+        },
+        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.4/build/js/utils.js",
+    });
+
+    // ── Form submit ──
     $('#whatsappForm').on('submit', function (e) {
-        
-        let isValid = true;
+        e.preventDefault(); // stop normal page reload
 
         // Clear old errors
-        $('.error-message').text('');
-        $('.popup-input').removeClass('is-invalid');
+        $('#wa_phone_error').text('');
+        $('#wa_phone').removeClass('is-invalid');
 
         let phone = $('#wa_phone').val().trim();
-        let message = $('#wa_message').val().trim();
 
-        // Phone required
+        // Validate: phone is required
+        // if (phone === '') {
+        //     $('#wa_phone_error').text('Contact number is required.');
+        //     $('#wa_phone').addClass('is-invalid');
+        //     return;
+        // }
+        // Validate: phone is required + min 10 digits + max 15 digits
         if (phone === '') {
             $('#wa_phone_error').text('Contact number is required.');
             $('#wa_phone').addClass('is-invalid');
-            isValid = false;
+            return;
         }
         
-        // Phone required
-        if (message === '') {
-            $('#wa_message_error').text('Message is required.');
-            $('#wa_message').addClass('is-invalid');
-            isValid = false;
-        }
-
-        
-
-        // Stop submit if invalid
-        if (!isValid) {
-            e.preventDefault();
-            return false;
+        if (phone.length < 10) {
+            $('#wa_phone_error').text('Contact number must be at least 10 digits.');
+            $('#wa_phone').addClass('is-invalid');
+            return;
         }
         
-        if (isValid) {
-            $("#submitbtn")
-                .prop("disabled", true)
-                .text("Submitting...");
+        if (phone.length > 15) {
+            $('#wa_phone_error').text('Contact number must not exceed 15 digits.');
+            $('#wa_phone').addClass('is-invalid');
+            return;
         }
 
-        // Set hidden phone field before submit
-        $('#wa_full_phone').val(phone);
+        // Build full phone with dial code
+        const countryData = iti.getSelectedCountryData();
+        fullPhone.value  = "+" + countryData.dialCode + phone;
+        countryName.value = countryData.name;
+
+        $("#submitbtn").prop("disabled", true).text("Submitting...");
+
+        // Open blank tab NOW (synchronous = bypasses popup blocker)
+        // Show loading in the new tab instead of about:blank
+            const newTab = window.open('', '_blank');
+            newTab.document.write(`
+                <html>
+                <head><title>Connecting to WhatsApp...</title></head>
+                <body style="
+                    margin:0;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    height:100vh;
+                    background:#f0f0f0;
+                    font-family:sans-serif;
+                    flex-direction:column;
+                    gap:15px;
+                ">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="60" />
+                    <p style="font-size:18px;color:#005762;font-weight:600;margin:0;">
+                        Connecting to WhatsApp...
+                    </p>
+                </body>
+                </html>
+            `);
+            
+            // AJAX submit to Laravel
+            $.ajax({
+                url: $('#whatsappForm').attr('action'),
+                method: 'POST',
+                data: $('#whatsappForm').serialize(),
+                success: function () {
+                    const waNumber  = '971542797571';
+                    const waMessage = 'Inquiry from the website.';
+                    const waUrl     = 'https://api.whatsapp.com/send/?phone=' + waNumber + '&text=' + encodeURIComponent(waMessage);
+            
+                    newTab.location.href = waUrl;
+            
+                    $('#whatsappForm')[0].reset();
+                    $('#exampleModal-4').modal('hide');
+                    $("#submitbtn").prop("disabled", false).text("Start Chat with Us");
+                },
+                error: function () {
+                    newTab.close();
+                    alert('Something went wrong. Please try again.');
+                    $("#submitbtn").prop("disabled", false).text("Start Chat with Us");
+                }
+            });
     });
 
-    // Remove error while typing
+    // ── Remove error while typing ──
     $('#wa_phone').on('input', function () {
         if ($(this).val().trim() !== '') {
             $('#wa_phone_error').text('');
-            $(this).removeClass('is-invalid');
-        }
-    });
-
-    $('#wa_message').on('input', function () {
-        if ($(this).val().trim() !== '') {
-            $('#wa_message_error').text('');
             $(this).removeClass('is-invalid');
         }
     });

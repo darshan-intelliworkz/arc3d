@@ -839,6 +839,7 @@
 
 
 @include('layouts.frontfooter')
+@include('layouts.imagemodal')
 
 
 
